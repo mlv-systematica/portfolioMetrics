@@ -16,12 +16,15 @@ class importManager:
         for ticker in tickers:
             histo = yf.Ticker(ticker).history(period=period)[fields]
             histo["ticker"] = ticker
-            histo["Stock Splits"] = histo["Stock Splits"].astype(dtype=int)
+            if "Stock Splits" in fields: 
+                histo["Stock Splits"] = histo["Stock Splits"].astype(dtype=int)
+            
             if data.empty:
                 data = histo
             else:
                 data = data.append(histo)
-
+        return data
+        
 def test():
     im = importManager()
     im.spots(["MSFT"])

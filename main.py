@@ -1,4 +1,4 @@
-import importManager
+import data.importManager as importManager
 
 def main():
     return None

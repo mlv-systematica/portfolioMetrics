@@ -7,12 +7,12 @@ class importManager:
     def __init__(self) -> None:
         pass
     
-    def spots(self, tickers : list, period="5Y", fields = ["Open", "High", "Close", "Low", "Close", "Volume", "Dividends", "Stock Splits"])->pd.DataFrame:
+    def spots(self, tickers : list, period="5Y", fields = ["Open", "High", "Low", "Close", "Volume", "Dividends", "Stock Splits"])->pd.DataFrame:
 
         data = pd.DataFrame()
         stock_split_asked : bool = "Stock Splits" in fields
         
-        if any([field not in ["Open", "High", "Close", "Low", "Close", "Volume", "Dividends", "Stock Splits"] for field in fields]):
+        if any([field not in ["Open", "High","Low", "Close", "Volume", "Dividends", "Stock Splits"] for field in fields]):
             raise ValueError("Invalid input : fields not found in Histo DataFrame")
                 
         for ticker in tickers:
@@ -29,7 +29,7 @@ class importManager:
         
 def test():
     im = importManager()
-    im.spots(["MSFT"])
+    im.spots(["MSFT", "^GSPC"])
     
 
 if __name__ == "__main__":

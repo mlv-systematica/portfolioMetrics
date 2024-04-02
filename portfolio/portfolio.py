@@ -6,7 +6,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import pandas as pd
 import numpy as np
 
-import metrics
+import metrics as metrics
 
 STRATEGY = ["EW", "MINVAR", "ERC"]
 
@@ -37,6 +37,6 @@ class Portfolio:
         ptf100.iloc[0]=100
         ptf100 = ptf100.cumprod().to_frame()
         
-        df_risk_metrics = metrics.get_returns_analysis(ptf100, frequency=freq, quantile=q)
+        df_risk_metrics = metrics.performance.get_returns_analysis(ptf100, frequency=freq, quantile=q)
         res = {"ptf_track" : ptf100, "risk_metrics" : df_risk_metrics}
         return res

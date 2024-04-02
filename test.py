@@ -8,7 +8,7 @@ import numpy as np
 
 from portfolio.portfolio import Portfolio
 from data.importManager import importManager
-import metrics.metrics as metrics
+import metrics
 
 def test():
     tickers = ["XWD.TO", "^GSPC", "^STOXX50E", "^N225", "EEM", "BTC-USD", "ETH-USD", "GLD"]
@@ -19,7 +19,7 @@ def test():
     
     dico_weights = {"BTC-EUR" : 477, "ETH-EUR" :234, "IUIT.L" : 154, "SEMI.AS" : 107, "SOL-EUR" : 202, "XWD.TO" : 410, "GLD" : 197, "EEM" : 50}
     weights = pd.DataFrame(index=ptf.df_price.index)
-    for ticker in dico_weights.keys():
+    for ticker in ptf.df_returns:
         weights[ticker] = dico_weights[ticker]
     weights=weights/sum(dico_weights.values())
     weights = np.asarray(weights.iloc[-1])
